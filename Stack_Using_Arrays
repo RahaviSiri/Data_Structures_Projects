@@ -1,0 +1,150 @@
+#include <iostream>
+#include <chrono>
+
+using namespace std;
+
+const int maximumSize = 15; // Maximum size of the stack
+int top = -1; // Index of the top element
+int arr[maximumSize]; // Array to store the elements
+
+
+void push(int n) {
+  // Check if the stack is full
+  if (top >= maximumSize - 1) {
+    cout << "Stack Overflow\n";
+    return;
+  }
+  else{
+      // Increment the top index and insert the element
+      arr[++top] = n;
+  }    
+}
+
+
+int pop() {
+  // Check if the stack is empty
+    if (top < 0) {
+        cout << "Stack Underflow\n";
+        return -1;
+    }
+    else{
+         // Get the top element and decrement the top index
+        int num = arr[top--];
+        return num; 
+    }
+}
+
+
+bool isEmpty() {
+  // Check if the stack is empty
+  return (top < 0);
+}
+
+
+bool isFull() {
+  // Check if the stack is full
+  return (top >= maximumSize - 1);
+}
+
+
+int StackTop() {
+  // Check if the stack is empty
+  if (top < 0) {
+    cout << "Stack is Empty\n";
+    return -1;
+  }
+  else{
+    // Get the top element
+    int num = arr[top];
+    return num;   
+  }
+}
+
+
+void Display() {
+  // Check if the stack is empty
+  if (top < 0) {
+    cout << "Stack is Empty\n";
+    return;
+  }
+  // Print the elements in the stack
+  for (int i = top; i >= 0; i--) {
+    cout << arr[i] << " ";
+  }
+  cout << endl;
+}
+
+
+int main() {
+    auto startTime = chrono::high_resolution_clock::now();
+    push(8);
+    push(10);
+    push(5);
+    pop();
+    push(11);
+    push(15);
+    pop();
+    push(23);
+    push(6);
+    pop();
+    push(18);
+    push(20);
+    pop();
+    push(17);
+    push(8);
+    push(10);
+    push(5);
+    push(11);
+    pop();
+    pop();
+    push(15);
+    push(23);
+    push(6);
+    push(18);
+    push(20);
+    pop();
+    pop();
+    push(17);
+    push(8);
+    push(10);
+    push(5);
+    push(11);
+    push(15);
+    pop();
+    pop();
+    push(23);
+    pop();
+    pop();
+    push(6);
+    push(18);
+    push(20);
+    push(17);
+    push(8);
+    push(10);
+    pop();
+    push(5);
+    push(11);
+    push(15);
+    push(23);
+    pop();
+    pop();
+    pop();
+    push(6);
+    push(18);
+    push(20);
+    push(17);
+    Display();
+    pop();
+    pop();
+    push(30);
+    push(3);
+    Display();
+    push(4);
+    push(30);
+    push(3);
+    push(1);
+    Display();  // Display the stack at this point
+    auto endTime = chrono::high_resolution_clock::now();
+    auto duration = chrono::duration_cast < chrono::microseconds>(endTime - startTime);
+    cout << "Time taken for Stack using Array: " << duration.count() << " microseconds.\n";
+}
