@@ -20,7 +20,7 @@ class Node {
 Node* Head = nullptr;
 
 // Push function to insert data into the stack
-void Push(int value) {
+void push(int value) {
     // Allocate a new node and set its value and next pointer
     Node* newNode = new Node(value);
     newNode->next = Head;
@@ -29,7 +29,7 @@ void Push(int value) {
 }
 
 // Pop function to remove/delete data from the stack
-void Pop() {
+void pop() {
     // If the stack is empty, print a message and return
     if (Head == nullptr) {
         cout << "Stack is empty.\n";
