@@ -1,0 +1,157 @@
+#include <iostream>
+#include <chrono>
+
+using namespace std;
+
+// Definition of the node structure
+class Node {
+    public:
+        int value;
+        Node* next;
+        
+        Node(int val) 
+        :value(val), next(nullptr) 
+        {
+    
+        }  // Constructor to initialize the node with a value
+};
+
+// The top pointer of the stack
+Node* Head = nullptr;
+
+// Push function to insert data into the stack
+void Push(int value) {
+    // Allocate a new node and set its value and next pointer
+    Node* newNode = new Node(value);
+    newNode->next = Head;
+    // Update the top pointer to point to the new node
+    Head = newNode;
+}
+
+// Pop function to remove/delete data from the stack
+void Pop() {
+    // If the stack is empty, print a message and return
+    if (Head == nullptr) {
+        cout << "Stack is empty.\n";
+        return;
+    }
+    // Save the current top node in a temporary variable
+    Node* temp = Head;
+    // Update the top pointer to point to the next node
+    Head = Head->next;
+    // Delete the top node
+    delete temp;
+}
+
+// isEmpty function to check whether the stack is empty or not
+bool isEmpty() {
+    return Head == nullptr;
+}
+
+// isFull function to check whether the stack is full or not
+bool isFull() {
+    // Linked list implementation doesn't have a fixed size limit, so it's always false.
+    return false;
+}
+
+// StackTop function to find what is at the top of the stack
+int StackTop() {
+    // If the stack is empty, print a message and return -1
+    if (Head == nullptr) {
+        cout << "Stack is empty.\n";
+        return -1;
+    }
+
+    // Return the data value of the top node
+    return Head->value;
+}
+
+// Display function to print the elements in the stack
+void Display() {
+    // If the stack is empty, print a message and return
+    if (Head == nullptr) {
+        cout << "Stack is empty.\n";
+        return;
+    }
+    // Traverse the stack from top to bottom and print the data values of each node
+    Node* temp = Head;
+    while (temp != nullptr) {
+        cout << temp->value << " ";
+        temp = temp->next;
+    }
+    cout << "\n";
+}
+
+int main() {
+    auto startTime = chrono::high_resolution_clock::now();
+    Push(8);
+    Push(10);
+    Push(5);
+    Pop();
+    Push(11);
+    Push(15);
+    Pop();
+    Push(23);
+    Push(6);
+    Pop();
+    Push(18);
+    Push(20);
+    Pop();
+    Push(17);
+    Push(8);
+    Push(10);
+    Push(5);
+    Push(11);
+    Pop();
+    Pop();
+    Push(15);
+    Push(23);
+    Push(6);
+    Push(18);
+    Push(20);
+    Pop();
+    Pop();
+    Push(17);
+    Push(8);
+    Push(10);
+    Push(5);
+    Push(11);
+    Push(15);
+    Pop();
+    Pop();
+    Push(23);
+    Pop();
+    Pop();
+    Push(6);
+    Push(18);
+    Push(20);
+    Push(17);
+    Push(8);
+    Push(10);
+    Pop();
+    Push(5);
+    Push(11);
+    Push(15);
+    Push(23);
+    Pop();
+    Pop();
+    Pop();
+    Push(6);
+    Push(18);
+    Push(20);
+    Push(17);
+    Display();
+    Pop();
+    Pop();
+    Push(30);
+    Push(3);
+    Display();
+    Push(4);
+    Push(30);
+    Push(3);
+    Push(1);
+    Display();
+    auto endTime = chrono::high_resolution_clock::now();
+    auto duration = chrono::duration_cast<chrono::microseconds>(endTime - startTime);
+    cout << "Time taken for Stack using LinkedList: " << duration.count() << " microseconds.\n";
+}
